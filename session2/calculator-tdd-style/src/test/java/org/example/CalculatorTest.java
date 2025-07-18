@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
     Calculator calculator;
@@ -238,5 +237,17 @@ public class CalculatorTest {
         double numTwo = 10.1;
         double expected = 5.0;
         assertEquals(expected, calculator.divide(numOne, numTwo), 0.0001);
+    }
+
+    @Test
+    @DisplayName("Test division by zero exception")
+    void testDivideByZero() {
+        double numOne = 320.0;
+        double numTwo = 0.0;
+        ArithmeticException exception = assertThrows(
+                ArithmeticException.class,
+                () -> calculator.divide(numOne, numTwo)
+        );
+        assertEquals("Division by zero", exception.getMessage());
     }
 }
