@@ -88,6 +88,7 @@ public class Calculator {
     }
 
     public double divide(double numOne, double numTwo) {
+        if (numTwo == 0.0) throw new ArithmeticException("Division by zero");
         return numOne / numTwo;
     }
 }
